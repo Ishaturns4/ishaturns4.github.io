@@ -37,11 +37,9 @@ function sheet_() {
     sh.appendRow(HEADERS);
     sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
     sh.setFrozenRows(1);
-    // Totals for the host, counting only "Yes" rows.
-    sh.getRange('K1:L3').setValues([
-      ['Families attending', '=COUNTIF(B2:B,"Yes")'],
-      ['Adults', '=SUMIF(B2:B,"Yes",F2:F)'],
-      ['Kids', '=SUMIF(B2:B,"Yes",G2:G)']]);
+    // Totals for the host on the header row (extra rows here would make appendRow skip ahead).
+    sh.getRange('K1:P1').setValues([['Families attending', '=COUNTIF(B2:B,"Yes")',
+      'Adults', '=SUMIF(B2:B,"Yes",F2:F)', 'Kids', '=SUMIF(B2:B,"Yes",G2:G)']]);
   }
   return sh;
 }
